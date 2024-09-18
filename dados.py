@@ -3,14 +3,14 @@ import matplotlib.pyplot as plt
 import mysql.connector
 
 mydb = mysql.connector.connect(
-    host = "banco do cliente",
-    user = "usuário integrador",
-    password = "senha",
-    database = "banco de dados"
+    host = "192.168.1.100",
+    user = "MerceariaMeninas",
+    password = "30710670#",
+    database = "MMeninasDB"
 )
 
 mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM tabela")
+mycursor.execute("SELECT * FROM produtos")
 result = mycursor.fetchall()
 
 df = pd.DataFrame(result, columns=["coluna x", "coluna y", "coluna z"])
