@@ -10,14 +10,13 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM produtos")
+mycursor.execute("SELECT * FROM produtos WHERE movimentacao ='Saída'")
 result = mycursor.fetchall()
 
-df = pd.DataFrame(result, columns=["coluna x", "coluna y", "coluna z"])
+df = pd.DataFrame(result, columns=["produto", "valor",])
 
-#supondo que o cliente tenha um faturamento e tenhamos valores e datas podemos plotar uma análise simples
-plt.plot(df["data"], df["valor"])
-plt.xlabel("data")
+plt.plot(df["produto"], df["valor"])
+plt.xlabel("produto")
 plt.ylabel("valor")
-plt.title("Faturamento em anos Cliente")
+plt.title("Faturamento Cliente")
 plt.show
