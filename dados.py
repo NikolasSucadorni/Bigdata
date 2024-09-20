@@ -9,14 +9,21 @@ mydb = mysql.connector.connect(
     database = "MMeninasDB"
 )
 
+def connect_to_database(db_config):
+    try:
+        mydb = mysql.connector.connect(mydb)
+        return mydb
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+
+mydb = connect_to_database(mydb)
+
 mycursor = mydb.cursor()
-mycursor.execute("SELECT * FROM produtos WHERE movimentacao ='Saída'")
+mycursor.execute("SELECT * FROM MerceariaMeninas'")
 result = mycursor.fetchall()
 
-df = pd.DataFrame(result, columns=["produto", "valor",])
+df = pd.DataFrame(result, columns=['idcompra', 'Movimentação', 'Quantidade', 'Categoria do Produto','Data', 'Valor', 'Produto'])
 
-plt.plot(df["produto"], df["valor"])
-plt.xlabel("produto")
-plt.ylabel("valor")
-plt.title("Faturamento Cliente")
-plt.show
+mydb.close()
+
+print(df.head())
